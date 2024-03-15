@@ -1,0 +1,4 @@
+/mini_finance
+*/.env
+.venv
+*/.vscode
