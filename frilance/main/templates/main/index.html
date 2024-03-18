@@ -7,7 +7,7 @@
                     <div class="title-group mb-3">
                         <h1 class="h2 mb-0">Overview</h1>
 
-                        <small class="text-muted">Hello Thomas, welcome back!</small>
+                        <small class="text-muted">Hello {{user.username}}, welcome back!</small>
                     </div>
 
                     <div class="row my-4">
@@ -15,24 +15,25 @@
                             <div class="custom-block custom-block-balance">
                                 <small>Your Balance</small>
 
-                                <h2 class="mt-2 mb-3">$254,800</h2>
+                                <h2 class="mt-2 mb-3">${{user.card.balance}}</h2>
 
                                 <div class="custom-block-numbers d-flex align-items-center">
                                     <span>****</span>
                                     <span>****</span>
                                     <span>****</span>
-                                    <p>2560</p>
+                                    <p>{{ user.card.card_number|slice:"-4:" }}</p>
                                 </div>
 
                                 <div class="d-flex">
                                     <div>
                                         <small>Valid Date</small>
-                                        <p>12/2028</p>
+                                        <p><p>{{ user.card.expiration_date|date:"m/Y" }}</p>
+                                    </p>
                                     </div>
 
                                     <div class="ms-auto">
                                         <small>Card Holder</small>
-                                        <p>Thomas</p>
+                                        <p>{{user.username}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +161,7 @@
                         <div class="col-lg-5 col-12">
                             <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                                 <div class="custom-block-profile-image-wrap mb-4">
-                                    <img src="{% static "images/medium-shot-happy-man-smiling.jpg" %} " class="custom-block-profile-image img-fluid" alt="">
+                                    <img src="{{user.account.image.url}}" class="custom-block-profile-image img-fluid" alt="">
 
                                     <a href="setting.html" class="bi-pencil-square custom-block-edit-icon"></a>
                                 </div>
@@ -168,14 +169,14 @@
                                 <p class="d-flex flex-wrap mb-2">
                                     <strong>Name:</strong>
 
-                                    <span>Thomas Edison</span>
+                                    <span>{{user.username}}</span>
                                 </p>
 
                                 <p class="d-flex flex-wrap mb-2">
                                     <strong>Email:</strong>
                                     
                                     <a href="#">
-                                        thomas@site.com
+                                        {{user.email}}
                                     </a>
                                 </p>
 
@@ -183,7 +184,7 @@
                                     <strong>Phone:</strong>
 
                                     <a href="#">
-                                        (60) 12 345 6789
+                                        {{user.account.phone_number}}
                                     </a>
                                 </p>
                             </div>

@@ -12,7 +12,7 @@ class Account(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE)
     image = models.ImageField(upload_to="user_images", blank = True)
-    
+
     phone_number = PhoneNumberField()
 
     birthday = models.DateField(auto_now=False,
@@ -46,6 +46,10 @@ class Card(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
 
     expiration_date = models.DateTimeField(default = timezone.now()+timedelta(days=365*10))
+    
+    balance = models.DecimalField(max_digits=10,
+                                  decimal_places=2,
+                                  default = 100)
 
 
 
