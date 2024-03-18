@@ -30,36 +30,40 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="auth-container">
-                    <h2 class="text-center mb-4">Регистрация</h2>
+                    <h2 class="text-center mb-4">Registration</h2>
+                    <form method="POST">
+                    {% csrf_token %}
                     <div class="mb-3">
-                        <label for="username" class="form-label">Имя пользователя</label>
-                        <input type="text" class="form-control" id="username" placeholder="Введите имя пользователя">
+                        <label for="username" class="form-label">User name</label>
+                        <input type="text" class="form-control" id="username" name ='username' placeholder="Enter your username ">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="Введите адрес электронной почты">
+                        <input type="email" class="form-control" id="email", name = 'email' placeholder="Enter your Email">
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Телефон</label>
-                        <input type="tel" class="form-control" id="phone" placeholder="Введите номер телефона">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="phone", name = 'phone_number' placeholder="Enter your phone">
                     </div>
                     <div class="mb-3">
-                        <label for="birthdate" class="form-label">Дата рождения</label>
-                        <input type="date" class="form-control" id="birthdate">
+                        <label for="birthdate" class="form-label">Birthday</label>
+                        <input type="date" class="form-control" id="birthdate" name = "birthday"> 
                     </div>
                     <div class="mb-3">
-                        <label for="address" class="form-label">Адрес</label>
-                        <input type="text" class="form-control" id="address" placeholder="Введите адрес">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name = "address" placeholder="Enter your address">
                     </div>
                     <div class="mb-3">
-                        <label for="password1" class="form-label">Пароль</label>
-                        <input type="password" class="form-control" id="password1" placeholder="Введите пароль">
+                        <label for="password1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password1" name = "password1" placeholder="Enter your password">
                     </div>
                     <div class="mb-3">
-                        <label for="password2" class="form-label">Повторите пароль</label>
-                        <input type="password" class="form-control" id="password2" placeholder="Повторите пароль">
+                        <label for="password2" class="form-label">confirm the password</label>
+                        <input type="password" class="form-control" id="password2" name = "password2" placeholder="Enter your password again">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+                    {{form.errors}}
+                    <button type="submit" class="btn btn-primary w-100">Register</button>
+                </form>
                 </div>
             </div>
         </div>
