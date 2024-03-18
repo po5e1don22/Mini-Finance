@@ -16,7 +16,7 @@
 
                                     <div class="col-lg-3 col-12 mb-4 mb-lg-0">
                                         <div class="custom-block-profile-image-wrap">
-                                            <img src="{% static "images/medium-shot-happy-man-smiling.jpg" %} " class="custom-block-profile-image img-fluid" alt="">
+                                            <img src="{{user.account.image.url}}" class="custom-block-profile-image img-fluid" alt="">
 
                                             <a href="setting.html" class="bi-pencil-square custom-block-edit-icon"></a>
                                         </div>
@@ -33,7 +33,7 @@
                                             <strong>Email:</strong>
                                             
                                             <a href="#">
-                                                thomas@site.com
+                                                {{user.email}}
                                             </a>
                                         </p>
 
@@ -41,20 +41,20 @@
                                             <strong>Phone:</strong>
 
                                             <a href="#">
-                                                (60) 12 345 6789
+                                                {{user.account.phone_number}}
                                             </a>
                                         </p>
 
                                         <p class="d-flex flex-wrap mb-2">
                                             <strong>Birthday:</strong>
 
-                                            <span>March 5, 1992</span>
+                                            <span>{{user.account.birthday}}</span>
                                         </p>
 
                                         <p class="d-flex flex-wrap">
                                             <strong>Address:</strong>
 
-                                            <span>551 Swanston Street, Melbourne</span>
+                                            <span>{{user.account.address}}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -64,27 +64,27 @@
                                 <h6 class="mb-4">Card Information</h6>
 
                                 <p class="d-flex flex-wrap mb-2">
-                                    <strong>User ID:</strong>
+                                    <strong>card ID:</strong>
 
-                                    <span>012 395 8647</span>
+                                    <span>{{user.card.card_number}}</span>
                                 </p>
 
                                 <p class="d-flex flex-wrap mb-2">
                                     <strong>Type:</strong>
 
-                                    <span>Personal</span>
+                                    <span>{{user.card.get_card_type_display}}</span>
                                 </p>
 
                                 <p class="d-flex flex-wrap mb-2">
                                     <strong>Created:</strong>
 
-                                    <span>July 19, 2020</span>
+                                    <span>{{user.card.creation_date}}</span>
                                 </p>
 
                                 <p class="d-flex flex-wrap mb-2">
                                     <strong>Valid Date:</strong>
 
-                                    <span>July 18, 2032</span>
+                                    <span>{{user.card.expiration_date}}</span>
                                 </p>
                             </div>
                         </div>

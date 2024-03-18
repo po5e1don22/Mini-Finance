@@ -35,7 +35,7 @@
                                             <input class="form-control" type="email" name="profile-email" id="profile-email" placeholder="Johndoe@gmail.com">
 
                                             <div class="input-group mb-1">
-                                                <img src="{% static "images/profile/senior-man-white-sweater-eyeglasses.jpg" %} " class="profile-image img-fluid" alt="">
+                                                <img src="{{user.account.image.url}}" class="profile-image img-fluid" alt="">
 
                                                 <input type="file" class="form-control" id="inputGroupFile02">
                                             </div>

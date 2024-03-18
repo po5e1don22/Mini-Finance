@@ -11,6 +11,7 @@ from django.dispatch import receiver
 class Account(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="user_images", blank = True)
     
     phone_number = PhoneNumberField()
 
@@ -30,6 +31,8 @@ class Card(models.Model):
 
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE)
+    
+    
     
     card_number =  models.CharField(max_length=16,
                                     unique=True,
