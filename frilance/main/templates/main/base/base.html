@@ -167,12 +167,20 @@ Bootstrap 5 Dashboard Admin Template
 
                 <div class="dropdown px-3">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if user.account.image %}
                         <img src="{{user.account.image.url}} " class="profile-image img-fluid" alt="">
+                    {% else %}
+                        <img src="{% static "images/profile/empty.jpg" %} " class="profile-image img-fluid" alt="">
+                    {% endif %}
                     </a>
                     <ul class="dropdown-menu bg-white shadow">
                         <li>
                             <div class="dropdown-menu-profile-thumb d-flex">
+                            {% if user.account.image %}
                                 <img src="{{user.account.image.url}} " class="profile-image img-fluid me-3" alt="">
+                            {% else %}
+                                <img src="{% static "images/profile/empty.jpg" %} " class="profile-image img-fluid me-3" alt="">
+                            {% endif %}
 
                                 <div class="d-flex flex-column">
                                     <small>{{user.username}}</small>

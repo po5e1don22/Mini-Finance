@@ -35,8 +35,11 @@
                                             <input class="form-control" type="email" name="profile-email" id="profile-email" placeholder="Johndoe@gmail.com">
 
                                             <div class="input-group mb-1">
+                                            {% if user.account.image %}
                                                 <img src="{{user.account.image.url}}" class="profile-image img-fluid" alt="">
-
+                                            {% else %}
+                                                <img src="{% static "images/profile/empty.jpg" %}" class="profile-image img-fluid" alt="">
+                                            {% endif %}
                                                 <input type="file" class="form-control" id="inputGroupFile02">
                                             </div>
 

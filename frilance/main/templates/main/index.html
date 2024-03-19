@@ -161,7 +161,12 @@
                         <div class="col-lg-5 col-12">
                             <div class="custom-block custom-block-profile-front custom-block-profile text-center bg-white">
                                 <div class="custom-block-profile-image-wrap mb-4">
+
+                                {% if user.account.image %}
                                     <img src="{{user.account.image.url}}" class="custom-block-profile-image img-fluid" alt="">
+                                {% else %}
+                                    <img src="{% static "images/profile/empty.jpg" %}" class="custom-block-profile-image img-fluid" alt="">
+                                {% endif %}
 
                                     <a href="setting.html" class="bi-pencil-square custom-block-edit-icon"></a>
                                 </div>
