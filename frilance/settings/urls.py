@@ -4,5 +4,6 @@ from settings import views
 app_name = "settings"
 
 urlpatterns = [
-    path("", views.settings, name = 'settings')
+    path("", views.settings, name = 'settings'),
+    path('settings/profile_update/', views.profile_update, name='profile_update'),
 ]
