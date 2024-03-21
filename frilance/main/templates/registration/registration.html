@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Страница регистрации</title>
+    <title>Registration</title>
     <!-- Подключение Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Стили для фона */
+        
         body {
-            background-color: #1a2b1c; /* Болотно-темно-зеленый цвет */
-            color: #000000; /* Черный цвет текста */
+            background-color: #1a2b1c; 
+            color: #000000; 
         }
-        /* Стили для контейнера */
+        
         .auth-container {
             max-width: 400px;
-            margin: 0 auto; /* Центрирование по горизонтали */
-            margin-top: 10vh; /* Центрирование по вертикали */
+            margin: 0 auto; 
+            margin-top: 10vh; 
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.6); /* Прозрачный белый фон контейнера */
+            background-color: rgba(255, 255, 255, 0.6); 
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Тень для контейнера */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
         }
         
     </style>
@@ -63,6 +63,7 @@
                     </div>
                     {{form.errors}}
                     <button type="submit" class="btn btn-primary w-100">Register</button>
+                    <button type="button" class="btn btn-secondary w-100 mt-3" onclick="location.href='{% url "main:login" %}'">Login</button>
                 </form>
                 </div>
             </div>

@@ -4,12 +4,17 @@ from django.contrib.auth.models import User
 from user_profile.models import Card
 from decimal import Decimal
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Transaction
+from django.core.paginator import Paginator
 
 @login_required
 def wallet(request):
-    return render(request, "transactions/wallet.html")
+    transactions_list = Transaction.objects.filter(card__user=request.user)
+    paginator = Paginator(transactions_list, 10)  
+    page_number = request.GET.get('page')
+    transactions = paginator.get_page(page_number)
+    return render(request, 'transactions/wallet.html', {'transactions': transactions})
 
 @login_required
 def transation_detail(request):
@@ -28,16 +33,11 @@ def transfer(request):
         amount = Decimal(request.POST.get('transferAmount'))
         recipient_card = get_object_or_404(Card, user_id=recipient_id)
 
-        transaction = Transaction.objects.create(
-        card=sender_card,
-        description="money transfer",
-        payment_type="transfer",
-        amount=amount,
-        balance_after_transaction=sender_card.balance,
-        status='S'  
-    )
-        sender_card.transfer(amount, recipient_card)
-
+        try:
+            Transaction.create_transfer(sender_card, recipient_card, amount)
+        except ValueError:
+            # Обрабатываем ошибку недостаточного баланса
+            return HttpResponse("Insufficient balance")
 
         return HttpResponseRedirect('/')  
     else:

@@ -29,15 +29,32 @@ class Transaction(models.Model):
 
 
     #transaction system
-    @transaction.atomic
-    def transfer(self, amount, recipient_card):
+    @staticmethod
+    def create_transfer(sender_card, recipient_card, amount):
+        if sender_card.balance >= amount:
+            sender_card.balance -= amount
+            recipient_card.balance += amount
+            sender_card.save()
+            recipient_card.save()
 
-        # Block cards for the current transaction
-        cards = Card.objects.select_for_update().filter(id__in=[self.id, recipient_card.id])
+           
+            sender_transaction = Transaction.objects.create(
+                card=sender_card,
+                description="Money transfer to user {}".format(recipient_card.user.username),
+                payment_type="Transfer",
+                amount=-amount,  
+                balance_after_transaction=sender_card.balance,
+                status='S'  
+            )
 
-        if self.balance < amount:
-            raise ValueError("Insufficient funds for the transfer")
-        self.balance -= amount
-        recipient_card.balance += amount
-        self.save()
-        recipient_card.save()
+            
+            recipient_transaction = Transaction.objects.create(
+                card=recipient_card,
+                description="Money transfer from user {}".format(sender_card.user.username),
+                payment_type="Transfer",
+                amount=amount,  
+                balance_after_transaction=recipient_card.balance,
+                status='S'  
+            )
+        else:
+            raise ValueError("Insufficient balance")
